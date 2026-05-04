@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АрмаКИП Томск — Торгово-производственная компания</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --burgundy: #300009;
+            --red: #e50019;
+            --beige: #c5c4b6;
+            --gray: #645f69;
+            --navy: #2a3a59;
+            --white: #ffffff;
+            --light-bg: #f5f5f2;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Unbounded', sans-serif;
+            color: var(--navy);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(42, 58, 89, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--red);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header__logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header__logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        .header__logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+        }
+
+        .header__logo-text span {
+            color: var(--red);
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        .header__nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .header__nav a {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--beige);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header__nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s ease;
+        }
+
+        .header__nav a:hover {
+            color: var(--white);
+        }
+
+        .header__nav a:hover::after {
+            width: 100%;
+        }
+
+        .header__contacts {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .header__phone {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .header__phone a {
+            color: var(--white);
+        }
+
+        .header__phone a:hover {
+            color: var(--red);
+        }
+
+        .header__email {
+            font-size: 0.7rem;
+            color: var(--beige);
+        }
+
+        .header__email a:hover {
+            color: var(--red);
+        }
+
+        /* Mobile menu */
+        .header__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            background: none;
+            border: none;
+        }
+
+        .header__burger span {
+            width: 28px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero__bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.35) saturate(0.8);
+            z-index: 0;
+        }
+
+        .hero__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(48, 0, 9, 0.85) 0%,
+                rgba(42, 58, 89, 0.75) 50%,
+                rgba(48, 0, 9, 0.7) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        .hero__badge {
+            display: inline-block;
+            padding: 10px 24px;
+            background: rgba(229, 0, 25, 0.2);
+            border: 1px solid var(--red);
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--beige);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .hero__title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 28px;
+            max-width: 800px;
+        }
+
+        .hero__title span {
+            color: var(--red);
+        }
+
+        .hero__subtitle {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--beige);
+            line-height: 1.8;
+            max-width: 650px;
+            margin-bottom: 48px;
+        }
+
+        .hero__buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 40px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn--primary {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .btn--primary:hover {
+            background: #ff1a2e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 35px rgba(229, 0, 25, 0.4);
+        }
+
+        .btn--outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--beige);
+        }
+
+        .btn--outline:hover {
+            border-color: var(--red);
+            color: var(--red);
+            transform: translateY(-2px);
+        }
+
+        .hero__stats {
+            display: flex;
+            gap: 80px;
+            margin-top: 100px;
+            padding-top: 50px;
+            border-top: 1px solid rgba(197, 196, 182, 0.25);
+        }
+
+        .hero__stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .hero__stat-label {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--beige);
+            margin-top: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section--dark {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .section--burgundy {
+            background: var(--burgundy);
+            color: var(--white);
+        }
+
+        .section--light {
+            background: var(--light-bg);
+        }
+
+        .section__header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section__label {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 20px;
+            padding: 8px 20px;
+            background: rgba(229, 0, 25, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(229, 0, 25, 0.2);
+        }
+
+        .section--dark .section__label,
+        .section--burgundy .section__label {
+            color: var(--beige);
+            background: rgba(197, 196, 182, 0.1);
+            border-color: rgba(197, 196, 182, 0.2);
+        }
+
+        .section__title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .section__desc {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .section--dark .section__desc {
+            color: var(--beige);
+        }
+
+        .section--burgundy .section__desc {
+            color: rgba(197, 196, 182, 0.85);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about__image-wrapper {
+            position: relative;
+        }
+
+        .about__image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--red);
+            border-radius: 12px;
+            z-index: 0;
+        }
+
+        .about__image {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 12px;
+            z-index: 1;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .about__content {
+            padding: 20px 0;
+        }
+
+        .about__label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+
+        .about__title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 28px;
+        }
+
+        .about__text {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--gray);
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        .about__features {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .about__feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .about__feature-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: var(--burgundy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--white);
+            border: 2px solid rgba(229, 0, 25, 0.3);
+        }
+
+        .about__feature-text {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.6;
+        }
+
+        /* ===== DIRECTIONS SECTION ===== */
+        .directions__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .direction-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(197, 196, 182, 0.2);
+            border-radius: 16px;
+            padding: 48px 36px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .direction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .direction-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(197, 196, 182, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .direction-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .direction-card__icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--red), var(--burgundy));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 28px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .direction-card__title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .direction-card__desc {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--beige);
+            line-height: 1.7;
+        }
+
+        /* ===== ADVANTAGES SECTION ===== */
+        .advantages__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .advantage-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 48px 40px;
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--red);
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .advantage-card__number {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            background: var(--navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            border: 3px solid var(--red);
+        }
+
+        .advantage-card__title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .advantage-card__desc {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ===== DIRECTOR SECTION ===== */
+        .director {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .director__photo-wrapper {
+            position: relative;
+        }
+
+        .director__photo-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            background: var(--burgundy);
+            border-radius: 12px;
+            z-index: 0;
+            border: 3px solid var(--red);
+        }
+
+        .director__photo {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 12px;
+            z-index: 1;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .director__content {
+            padding: 20px 0;
+        }
+
+        .director__label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 16px;
+        }
+
+        .director__name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .director__position {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(229, 0, 25, 0.2);
+        }
+
+        .director__text {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--gray);
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        .director__quote {
+            padding: 32px 40px;
+            background: var(--light-bg);
+            border-left: 5px solid var(--red);
+            border-radius: 0 12px 12px 0;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .contact__info {
+            padding: 20px 0;
+        }
+
+        .contact__info-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 28px;
+            line-height: 1.2;
+        }
+
+        .contact__info-desc {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--beige);
+            line-height: 1.9;
+            margin-bottom: 50px;
+        }
+
+        .contact__details {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .contact__detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact__detail-icon {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            background: rgba(229, 0, 25, 0.15);
+            border: 2px solid rgba(229, 0, 25, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .contact__detail-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--beige);
+            margin-bottom: 6px;
+        }
+
+        .contact__detail-value {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1.5;
+        }
+
+        .contact__detail-value a {
+            color: var(--white);
+        }
+
+        .contact__detail-value a:hover {
+            color: var(--red);
+        }
+
+        .contact__form-wrapper {
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(197, 196, 182, 0.2);
+            border-radius: 20px;
+            padding: 56px 48px;
+        }
+
+        .contact__form-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .contact__form-subtitle {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: var(--beige);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--beige);
+            margin-bottom: 10px;
+        }
+
+        .form-group label span {
+            color: var(--red);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(197, 196, 182, 0.25);
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(197, 196, 182, 0.4);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--red);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group select {
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23c5c4b6' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+        }
+
+        .form-group select option {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .form__submit {
+            width: 100%;
+            padding: 20px;
+            margin-top: 12px;
+            font-size: 0.8rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--burgundy);
+            padding: 80px 0 40px;
+            color: var(--beige);
+            border-top: 3px solid var(--red);
+        }
+
+        .footer__top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 60px;
+            padding-bottom: 60px;
+            border-bottom: 2px solid rgba(197, 196, 182, 0.15);
+        }
+
+        .footer__brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer__logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer__logo img {
+            height: 45px;
+        }
+
+        .footer__logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1.5px;
+            line-height: 1.3;
+        }
+
+        .footer__logo-text span {
+            color: var(--red);
+            font-size: 0.85rem;
+            display: block;
+        }
+
+        .footer__brand-desc {
+            font-size: 0.75rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(197, 196, 182, 0.7);
+        }
+
+        .footer__heading {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--red);
+        }
+
+        .footer__links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer__links a {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: rgba(197, 196, 182, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer__links a:hover {
+            color: var(--red);
+            padding-left: 6px;
+        }
+
+        .footer__requisites {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer__requisite-item {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: rgba(197, 196, 182, 0.6);
+            line-height: 1.6;
+        }
+
+        .footer__requisite-item strong {
+            color: rgba(197, 196, 182, 0.9);
+            font-weight: 600;
+        }
+
+        .footer__bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 40px;
+        }
+
+        .footer__copyright {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: rgba(197, 196, 182, 0.5);
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 14px;
+        }
+
+        .footer__social {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid rgba(197, 196, 182, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--beige);
+            transition: all 0.3s ease;
+        }
+
+        .footer__social:hover {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .header__nav {
+                display: none;
+            }
+
+            .header__burger {
+                display: flex;
+            }
+
+            .hero__title {
+                font-size: 2.6rem;
+            }
+
+            .hero__stats {
+                gap: 50px;
+            }
+
+            .about,
+            .director,
+            .contact {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .directions__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer__top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .header__inner {
+                padding: 15px 20px;
+            }
+
+            .hero__content {
+                padding: 0 20px;
+            }
+
+            .hero__title {
+                font-size: 2rem;
+            }
+
+            .hero__stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section__title {
+                font-size: 1.8rem;
+            }
+
+            .directions__grid,
+            .advantages__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer__top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer__bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .director__photo {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header__inner">
+            <a href="#" class="header__logo">
+                <img src="logo.png" alt="АрмаКИП Томск логотип">
+                <div class="header__logo-text">АРМАКИП<span>ТОМСК</span></div>
+            </a>
+            <nav class="header__nav">
+                <a href="#about">О компании</a>
+                <a href="#directions">Направления</a>
+                <a href="#advantages">Преимущества</a>
+                <a href="#director">Руководство</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+            <div class="header__contacts">
+                <div class="header__phone">
+                    <a href="tel:+73822450900">+7 (3822) 45-09-00</a>
+                </div>
+                <div class="header__email">
+                    <a href="mailto:info@armakip.com">info@armakip.com</a>
+                </div>
+            </div>
+            <button class="header__burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <img src="bg-industrial.jpg" alt="Промышленное оборудование" class="hero__bg">
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <div class="hero__badge">Торгово-производственная компания</div>
+            <h1 class="hero__title">
+                Быть <span>современной</span> отечественной компанией
+            </h1>
+            <p class="hero__subtitle">
+                Выпускать надёжную, качественную и востребованную продукцию в области измерения и управления технологическими процессами в промышленности
+            </p>
+            <div class="hero__buttons">
+                <a href="#contact" class="btn btn--primary">Отправить заявку</a>
+                <a href="#catalog" class="btn btn--outline">Смотреть каталог</a>
+            </div>
+            <div class="hero__stats">
+                <div class="hero__stat">
+                    <div class="hero__stat-number">25+</div>
+                    <div class="hero__stat-label">Лет опыта</div>
+                </div>
+                <div class="hero__stat">
+                    <div class="hero__stat-number">1000+</div>
+                    <div class="hero__stat-label">Позиций на складе</div>
+                </div>
+                <div class="hero__stat">
+                    <div class="hero__stat-number">24/7</div>
+                    <div class="hero__stat-label">Приём заявок</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section section--light" id="about">
+        <div class="container">
+            <div class="about fade-in">
+                <div class="about__image-wrapper">
+                    <img src="bg-industrial.jpg" alt="Промышленное оборудование АрмаКИП Томск" class="about__image">
+                </div>
+                <div class="about__content">
+                    <div class="about__label">О компании</div>
+                    <h2 class="about__title">Поставка и производство измерительного оборудования</h2>
+                    <p class="about__text">
+                        Поставка и производство, в том числе нестандартного оборудования, подготовка и разработка технических решений, направленных на оптимизацию технологических процессов.
+                        Мы осуществляем подбор оборудования по индивидуальным требованиям и разрабатываем нестандартные решения от концепции до практического внедрения.
+                    </p>
+                    <div class="about__features">
+                        <div class="about__feature">
+                            <div class="about__feature-icon">⚙</div>
+                            <div class="about__feature-text">Разработка оборудования по требованиям заказчика — от концепции до решения</div>
+                        </div>
+                        <div class="about__feature">
+                            <div class="about__feature-icon">🔧</div>
+                            <div class="about__feature-text">Измерение давления и температуры, эффективное управление производственными процессами</div>
+                        </div>
+                        <div class="about__feature">
+                            <div class="about__feature-icon">🏭</div>
+                            <div class="about__feature-text">Более 25 лет инженерного и производственного опыта в решении самых сложных задач</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIRECTIONS ===== -->
+    <section class="section section--dark" id="directions">
+        <div class="container">
+            <div class="section__header fade-in">
+                <div class="section__label">Направления деятельности</div>
+                <h2 class="section__title">Что мы предлагаем</h2>
+                <p class="section__desc">
+                    Комплексные решения в области контрольно-измерительных приборов и оборудования для промышленных процессов
+                </p>
+            </div>
+            <div class="directions__grid">
+                <div class="direction-card fade-in">
+                    <div class="direction-card__icon">📦</div>
+                    <h3 class="direction-card__title">Поставка оборудования</h3>
+                    <p class="direction-card__desc">
+                        Поставка оборудования для монтажа и защиты контрольно-измерительных приборов от ведущих производителей
+                    </p>
+                </div>
+                <div class="direction-card fade-in">
+                    <div class="direction-card__icon">⚙️</div>
+                    <h3 class="direction-card__title">Производство</h3>
+                    <p class="direction-card__desc">
+                        Собственное производство нестандартного оборудования и технических решений под индивидуальные требования
+                    </p>
+                </div>
+                <div class="direction-card fade-in">
+                    <div class="direction-card__icon">🔍</div>
+                    <h3 class="direction-card__title">Подбор оборудования</h3>
+                    <p class="direction-card__desc">
+                        Осуществляем подбор оборудования по индивидуальным требованиям заказчика с учётом всех параметров
+                    </p>
+                </div>
+                <div class="direction-card fade-in">
+                    <div class="direction-card__icon">🔬</div>
+                    <h3 class="direction-card__title">Разработка решений</h3>
+                    <p class="direction-card__desc">
+                        Подготовка и разработка технических решений, направленных на оптимизацию технологических процессов
+                    </p>
+                </div>
+                <div class="direction-card fade-in">
+                    <div class="direction-card__icon">🛠️</div>
+                    <h3 class="direction-card__title">Монтаж и защита</h3>
+                    <p class="direction-card__desc">
+                        Оборудование для монтажа и защиты КИП — полный спектр продукции для промышленных объектов
+                    </p>
+                </div>
+                <div class="direction-card fade-in">
+                    <div class="direction-card__icon">📊</div>
+                    <h3 class="direction-card__title">Управление процессами</h3>
+                    <p class="direction-card__desc">
+                        Эффективное управление производственными процессами с применением современных измерительных систем
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ADVANTAGES ===== -->
+    <section class="section section--light" id="advantages">
+        <div class="container">
+            <div class="section__header fade-in">
+                <div class="section__label">Почему выбирают нас</div>
+                <h2 class="section__title">Наши преимущества</h2>
+                <p class="section__desc">
+                    Мы обеспечиваем комплексный подход к каждому проекту и гарантируем высокое качество продукции
+                </p>
+            </div>
+            <div class="advantages__grid">
+                <div class="advantage-card fade-in">
+                    <div class="advantage-card__number">01</div>
+                    <div>
+                        <h3 class="advantage-card__title">Собственный склад в Томске</h3>
+                        <p class="advantage-card__desc">
+                            Склад с запасом наиболее популярных и востребованных позиций — быстрая отгрузка без задержек
+                        </p>
+                    </div>
+                </div>
+                <div class="advantage-card fade-in">
+                    <div class="advantage-card__number">02</div>
+                    <div>
+                        <h3 class="advantage-card__title">Соответствие стандартам</h3>
+                        <p class="advantage-card__desc">
+                            Продукция соответствует ТУ и ГОСТ, а также международным стандартам качества и безопасности
+                        </p>
+                    </div>
+                </div>
+                <div class="advantage-card fade-in">
+                    <div class="advantage-card__number">03</div>
+                    <div>
+                        <h3 class="advantage-card__title">Быстрая обратная связь</h3>
+                        <p class="advantage-card__desc">
+                            Гибкая система ценообразования и качества — индивидуальный подход к каждому заказу
+                        </p>
+                    </div>
+                </div>
+                <div class="advantage-card fade-in">
+                    <div class="advantage-card__number">04</div>
+                    <div>
+                        <h3 class="advantage-card__title">Логистика по всей России</h3>
+                        <p class="advantage-card__desc">
+                            Доставка по всей территории Российской Федерации с оптимальными сроками и стоимостью
+                        </p>
+                    </div>
+                </div>
+                <div class="advantage-card fade-in">
+                    <div class="advantage-card__number">05</div>
+                    <div>
+                        <h3 class="advantage-card__title">Индивидуальный подход</h3>
+                        <p class="advantage-card__desc">
+                            Разработка оборудования и решений по индивидуальным требованиям каждого заказчика
+                        </p>
+                    </div>
+                </div>
+                <div class="advantage-card fade-in">
+                    <div class="advantage-card__number">06</div>
+                    <div>
+                        <h3 class="advantage-card__title">Короткие сроки обработки</h3>
+                        <p class="advantage-card__desc">
+                            Быстрая обработка заявок и оперативная подготовка коммерческих предложений
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIRECTOR ===== -->
+    <section class="section" id="director">
+        <div class="container">
+            <div class="director fade-in">
+                <div class="director__photo-wrapper">
+                    <img src="director.jpg" alt="Андрей Метальников — Генеральный директор ООО АрмаКИП Томск" class="director__photo">
+                </div>
+                <div class="director__content">
+                    <div class="director__label">Руководство</div>
+                    <h2 class="director__name">Андрей Метальников</h2>
+                    <p class="director__position">Генеральный директор ООО «АрмаКИП Томск»</p>
+                    <p class="director__text">
+                        Более 25 лет инженерного и производственного опыта в решении самых сложных задач в разработке и организации технологического процесса — от концепции, технологии к проекту и практическому внедрению в области измерения давления и температуры, эффективного управления производственными процессами.
+                    </p>
+                    <div class="director__quote">
+                        «Наша миссия — быть современной отечественной компанией, выпускать надёжную, качественную и востребованную продукцию в области измерения и управления технологическими процессами в промышленности.»
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section section--dark" id="contact">
+        <div class="container">
+            <div class="contact fade-in">
+                <div class="contact__info">
+                    <h2 class="contact__info-title">Свяжитесь с нами</h2>
+                    <p class="contact__info-desc">
+                        Оставьте заявку или задайте вопрос — наши специалисты подготовят индивидуальное коммерческое предложение
+                    </p>
+                    <div class="contact__details">
+                        <div class="contact__detail">
+                            <div class="contact__detail-icon">📞</div>
+                            <div>
+                                <div class="contact__detail-label">Телефон</div>
+                                <div class="contact__detail-value">
+                                    <a href="tel:+73822450900">+7 (3822) 45-09-00</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact__detail">
+                            <div class="contact__detail-icon">✉️</div>
+                            <div>
+                                <div class="contact__detail-label">Email</div>
+                                <div class="contact__detail-value">
+                                    <a href="mailto:info@armakip.com">info@armakip.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact__detail">
+                            <div class="contact__detail-icon">🏢</div>
+                            <div>
+                                <div class="contact__detail-label">Адрес</div>
+                                <div class="contact__detail-value">г. Томск</div>
+                            </div>
+                        </div>
+                        <div class="contact__detail">
+                            <div class="contact__detail-icon">🕐</div>
+                            <div>
+                                <div class="contact__detail-label">Режим работы</div>
+                                <div class="contact__detail-value">
+                                    Обработка заявок: Пн-Пт 05:00–15:00 (по Москве)<br>
+                                    Приём заявок: 24/7
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact__form-wrapper">
+                    <h3 class="contact__form-title">Отправить заявку</h3>
+                    <p class="contact__form-subtitle">Поля, отмеченные *, обязательны для заполнения</p>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Ваше имя <span>*</span></label>
+                                <input type="text" placeholder="Например, Иван Петров" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Телефон <span>*</span></label>
+                                <input type="tel" placeholder="+7 (XXX) XXX-XXXX" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail <span>*</span></label>
+                            <input type="email" placeholder="XXX@mail.ru" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Категория запроса</label>
+                            <select>
+                                <option value="">Выберите категорию</option>
+                                <option value="catalog">Продукция из каталога</option>
+                                <option value="custom">Нестандартное оборудование</option>
+                                <option value="consult">Консультация</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Описание</label>
+                            <textarea placeholder="Опишите ваш запрос или задайте вопрос..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary form__submit">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <img src="logo.png" alt="АрмаКИП Томск">
+                        <div class="footer__logo-text">АРМАКИП<span>ТОМСК</span></div>
+                    </div>
+                    <p class="footer__brand-desc">
+                        Торгово-производственная компания. Поставка и производство оборудования для контрольно-измерительных приборов в промышленности.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Разделы</h4>
+                    <div class="footer__links">
+                        <a href="#about">О компании</a>
+                        <a href="#directions">Направления</a>
+                        <a href="#advantages">Преимущества</a>
+                        <a href="#director">Руководство</a>
+                        <a href="#contact">Контакты</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Контакты</h4>
+                    <div class="footer__links">
+                        <a href="tel:+73822450900">+7 (3822) 45-09-00</a>
+                        <a href="mailto:info@armakip.com">info@armakip.com</a>
+                        <a href="#">г. Томск</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Реквизиты</h4>
+                    <div class="footer__requisites">
+                        <div class="footer__requisite-item">
+                            <strong>ООО «АрмаКИП Томск»</strong>
+                        </div>
+                        <div class="footer__requisite-item">
+                            <strong>ИНН:</strong> 7000023811
+                        </div>
+                        <div class="footer__requisite-item">
+                            <strong>КПП:</strong> 700001001
+                        </div>
+                        <div class="footer__requisite-item">
+                            <strong>ОГРН:</strong> 1257000000993
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    © ООО «АрмаКИП Томск» 2025. Все права защищены.
+                </div>
+                <div class="footer__socials">
+                    <a href="#" class="footer__social" title="Telegram">TG</a>
+                    <a href="#" class="footer__social" title="VK">VK</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
