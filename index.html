@@ -268,8 +268,9 @@
 
         .hero__buttons {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
+            margin-bottom: 24px;
         }
 
         .btn {
@@ -277,16 +278,17 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 18px 40px;
+            padding: 16px 28px;
             font-family: 'Unbounded', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .btn--primary {
@@ -315,8 +317,8 @@
         .hero__stats {
             display: flex;
             gap: 80px;
-            margin-top: 100px;
-            padding-top: 50px;
+            margin-top: 80px;
+            padding-top: 40px;
             border-top: 1px solid rgba(197, 196, 182, 0.25);
         }
 
@@ -1086,6 +1088,21 @@
                 font-size: 2rem;
             }
 
+            .hero__subtitle {
+                font-size: 0.95rem;
+            }
+
+            .hero__buttons {
+                gap: 12px;
+            }
+
+            .btn {
+                padding: 14px 20px;
+                font-size: 0.65rem;
+                flex: 1 1 calc(50% - 8px);
+                min-width: 0;
+            }
+
             .hero__stats {
                 flex-direction: column;
                 gap: 30px;
@@ -1169,10 +1186,15 @@
             <p class="hero__subtitle">
                 Выпускать надёжную, качественную и востребованную продукцию в области измерения и управления технологическими процессами в промышленности
             </p>
+            
+            <!-- ✅ ОБНОВЛЁННЫЙ БЛОК КНОПОК -->
             <div class="hero__buttons">
                 <a href="#contact" class="btn btn--primary">Отправить заявку</a>
                 <a href="#catalog" class="btn btn--outline">Смотреть каталог</a>
+                <a href="#solutions" class="btn btn--outline">Комплексные решения</a>
+                <a href="#certificates" class="btn btn--outline">Сертификаты</a>
             </div>
+            
             <div class="hero__stats">
                 <div class="hero__stat">
                     <div class="hero__stat-number">25+</div>
