@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>АрмаКИП Томск — Торгово-производственная компания</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>АрмаКИП Томск — Надёжность как системное решение</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -78,80 +78,96 @@
         .section__title { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
         .section__desc { font-size: 0.9rem; font-weight: 300; color: var(--gray); max-width: 700px; margin: 0 auto; line-height: 1.8; }
         .section--dark .section__desc { color: var(--beige); }
-        .section--burgundy .section__desc { color: rgba(197,196,182,0.85); }
 
-        /* ===== CATALOG ===== */
+        /* ===== ОБЪЕДИНЁННЫЙ РАЗДЕЛ "О КОМПАНИИ" (сначала директор, потом описание) ===== */
+        .about__director {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 100px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+        .director__photo-wrapper { position: relative; }
+        .director__photo-wrapper::after { content: ''; position: absolute; bottom: -20px; right: -20px; width: 100%; height: 100%; background: var(--burgundy); border-radius: 12px; z-index: 0; border: 3px solid var(--red); }
+        .director__photo { position: relative; width: 100%; height: 600px; object-fit: cover; border-radius: 12px; z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+        .director__name { font-size: 2rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+        .director__position { font-size: 0.85rem; font-weight: 500; color: var(--gray); margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid rgba(229,0,25,0.2); }
+        .director__text { font-size: 0.9rem; font-weight: 300; color: var(--gray); line-height: 2; margin-bottom: 40px; }
+        .director__quote { padding: 32px 40px; background: var(--light-bg); border-left: 5px solid var(--red); border-radius: 0 12px 12px 0; font-size: 0.9rem; font-weight: 400; color: var(--navy); line-height: 1.8; font-style: italic; }
+
+        .about__company {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .about__image-wrapper { position: relative; }
+        .about__image-wrapper::before { content: ''; position: absolute; top: -20px; left: -20px; width: 100%; height: 100%; border: 3px solid var(--red); border-radius: 12px; z-index: 0; }
+        .about__image { position: relative; width: 100%; height: 550px; object-fit: cover; border-radius: 12px; z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+        .about__content { padding: 20px 0; }
+        .about__label { font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 20px; }
+        .about__title { font-size: 2.2rem; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 28px; }
+        .about__text { font-size: 0.9rem; font-weight: 300; color: var(--gray); line-height: 2; margin-bottom: 40px; }
+        .about__features { display: flex; flex-direction: column; gap: 24px; }
+        .about__feature { display: flex; align-items: flex-start; gap: 20px; }
+        .about__feature-icon { flex-shrink: 0; width: 48px; height: 48px; background: var(--burgundy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--white); border: 2px solid rgba(229,0,25,0.3); }
+        .about__feature-text { font-size: 0.85rem; font-weight: 400; color: var(--navy); line-height: 1.6; }
+
+        /* ===== CATALOG WITH HOVER PREVIEW ===== */
         .catalog__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .catalog-card { background: var(--white); border-radius: 12px; padding: 28px 24px; border: 1px solid rgba(197,196,182,0.2); transition: all 0.3s ease; display: flex; gap: 16px; align-items: flex-start; }
+        .catalog-card {
+            background: var(--white); border-radius: 12px; padding: 28px 24px;
+            border: 1px solid rgba(197,196,182,0.2); transition: all 0.3s ease;
+            display: flex; gap: 16px; align-items: flex-start; position: relative;
+        }
         .catalog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); border-color: var(--red); }
         .catalog-card__icon { flex-shrink: 0; width: 48px; height: 48px; background: var(--navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--white); border: 2px solid var(--red); }
         .catalog-card__title { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.3; }
         .catalog-card__desc { font-size: 0.75rem; font-weight: 300; color: var(--gray); line-height: 1.6; margin-bottom: 12px; }
         .catalog-card__specs { font-size: 0.7rem; color: var(--gray); background: var(--light-bg); padding: 8px 12px; border-radius: 6px; margin-top: 8px; }
         .catalog-card__specs strong { color: var(--navy); }
-        .catalog__download { text-align: center; margin-top: 48px; }
-        .catalog__download .btn { padding: 18px 48px; font-size: 0.8rem; }
+        .catalog-card__preview {
+            position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-20px);
+            width: 200px; background: white; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            overflow: hidden; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            z-index: 100; pointer-events: none; border: 2px solid var(--red);
+        }
+        .catalog-card__preview img { width: 100%; height: auto; display: block; }
+        .catalog-card:hover .catalog-card__preview {
+            opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-10px);
+        }
+        @media (max-width: 768px) { .catalog-card__preview { display: none; } }
+        .catalog__download { text-align: center; margin-top: 48px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
         /* ===== SOLUTIONS SECTION ===== */
         .solutions__intro {
-            background: var(--navy);
-            border-radius: 20px;
-            padding: 48px 40px;
-            margin-bottom: 60px;
-            color: var(--white);
-            border: 2px solid var(--red);
+            background: var(--navy); border-radius: 20px; padding: 48px 40px;
+            margin-bottom: 60px; color: var(--white); border: 2px solid var(--red);
         }
         .solutions__intro-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 16px; }
         .solutions__intro-text { font-size: 0.9rem; font-weight: 300; color: var(--beige); line-height: 1.8; max-width: 800px; }
-        
         .process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
         .process-step {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 28px 24px;
-            border-left: 4px solid var(--red);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            background: var(--white); border-radius: 12px; padding: 28px 24px;
+            border-left: 4px solid var(--red); box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         }
-        .process-step__number {
-            width: 36px; height: 36px;
-            background: var(--burgundy);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; font-weight: 700; color: var(--white);
-            margin-bottom: 16px;
-        }
+        .process-step__number { width: 36px; height: 36px; background: var(--burgundy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 16px; }
         .process-step__title { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
         .process-step__desc { font-size: 0.75rem; font-weight: 300; color: var(--gray); line-height: 1.6; }
-
         .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 60px; }
         .service-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 32px 28px;
-            border: 1px solid rgba(197,196,182,0.2);
-            transition: all 0.3s ease;
+            background: var(--white); border-radius: 12px; padding: 32px 28px;
+            border: 1px solid rgba(197,196,182,0.2); transition: all 0.3s ease;
         }
         .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); border-color: var(--red); }
-        .service-card__icon {
-            width: 56px; height: 56px;
-            background: linear-gradient(135deg, var(--red), var(--burgundy));
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin-bottom: 20px;
-        }
+        .service-card__icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--red), var(--burgundy)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
         .service-card__title { font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
         .service-card__desc { font-size: 0.8rem; font-weight: 300; color: var(--gray); line-height: 1.7; margin-bottom: 16px; }
         .service-card__materials { font-size: 0.7rem; color: var(--gray); background: var(--light-bg); padding: 8px 12px; border-radius: 6px; }
-        .service-card__materials strong { color: var(--navy); }
-
         .solutions-contacts {
-            background: var(--light-bg);
-            border-radius: 16px;
-            padding: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            border: 2px solid rgba(229,0,25,0.2);
+            background: var(--light-bg); border-radius: 16px; padding: 40px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border: 2px solid rgba(229,0,25,0.2);
         }
         .solutions-contacts__info h3 { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
         .solutions-contacts__item { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
@@ -167,20 +183,6 @@
         .solutions-form input:focus, .solutions-form textarea:focus { border-color: var(--red); }
         .solutions-form textarea { min-height: 100px; resize: vertical; }
         .solutions-form .btn { width: 100%; padding: 16px; font-size: 0.75rem; }
-
-        /* ===== ABOUT ===== */
-        .about { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
-        .about__image-wrapper { position: relative; }
-        .about__image-wrapper::before { content: ''; position: absolute; top: -20px; left: -20px; width: 100%; height: 100%; border: 3px solid var(--red); border-radius: 12px; z-index: 0; }
-        .about__image { position: relative; width: 100%; height: 550px; object-fit: cover; border-radius: 12px; z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
-        .about__content { padding: 20px 0; }
-        .about__label { font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 20px; }
-        .about__title { font-size: 2.2rem; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 28px; }
-        .about__text { font-size: 0.9rem; font-weight: 300; color: var(--gray); line-height: 2; margin-bottom: 40px; }
-        .about__features { display: flex; flex-direction: column; gap: 24px; }
-        .about__feature { display: flex; align-items: flex-start; gap: 20px; }
-        .about__feature-icon { flex-shrink: 0; width: 48px; height: 48px; background: var(--burgundy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--white); border: 2px solid rgba(229,0,25,0.3); }
-        .about__feature-text { font-size: 0.85rem; font-weight: 400; color: var(--navy); line-height: 1.6; }
 
         /* ===== DIRECTIONS ===== */
         .directions__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
@@ -199,18 +201,6 @@
         .advantage-card__number { flex-shrink: 0; width: 56px; height: 56px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; color: var(--white); border: 3px solid var(--red); }
         .advantage-card__title { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
         .advantage-card__desc { font-size: 0.8rem; font-weight: 300; color: var(--gray); line-height: 1.7; }
-
-        /* ===== DIRECTOR ===== */
-        .director { display: grid; grid-template-columns: 450px 1fr; gap: 100px; align-items: center; }
-        .director__photo-wrapper { position: relative; }
-        .director__photo-wrapper::after { content: ''; position: absolute; bottom: -20px; right: -20px; width: 100%; height: 100%; background: var(--burgundy); border-radius: 12px; z-index: 0; border: 3px solid var(--red); }
-        .director__photo { position: relative; width: 100%; height: 600px; object-fit: cover; border-radius: 12px; z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-        .director__content { padding: 20px 0; }
-        .director__label { font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
-        .director__name { font-size: 2rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
-        .director__position { font-size: 0.85rem; font-weight: 500; color: var(--gray); margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid rgba(229,0,25,0.2); }
-        .director__text { font-size: 0.9rem; font-weight: 300; color: var(--gray); line-height: 2; margin-bottom: 40px; }
-        .director__quote { padding: 32px 40px; background: var(--light-bg); border-left: 5px solid var(--red); border-radius: 0 12px 12px 0; font-size: 0.9rem; font-weight: 400; color: var(--navy); line-height: 1.8; font-style: italic; }
 
         /* ===== CONTACT ===== */
         .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
@@ -233,7 +223,7 @@
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 16px 20px; font-family: 'Unbounded', sans-serif; font-size: 0.85rem; font-weight: 300; color: var(--white); background: rgba(255,255,255,0.06); border: 2px solid rgba(197,196,182,0.25); border-radius: 10px; outline: none; transition: all 0.3s ease; }
         .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(197,196,182,0.4); }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--red); background: rgba(255,255,255,0.08); }
-        .form-group select { appearance: none; cursor: pointer; background-image: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23c5c4b6' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; }
+        .form-group select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23c5c4b6' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; }
         .form-group select option { background: var(--navy); color: var(--white); }
         .form-group textarea { min-height: 130px; resize: vertical; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -271,7 +261,7 @@
             .header__burger { display: flex; }
             .hero__title { font-size: 2.6rem; }
             .hero__stats { gap: 50px; }
-            .about, .director, .contact, .solutions-contacts { grid-template-columns: 1fr; gap: 60px; }
+            .about__director, .about__company, .contact, .solutions-contacts { grid-template-columns: 1fr; gap: 60px; }
             .directions__grid, .catalog__grid { grid-template-columns: repeat(2, 1fr); }
             .process-steps, .services-grid { grid-template-columns: repeat(2, 1fr); }
             .footer__top { grid-template-columns: 1fr 1fr; }
@@ -283,7 +273,7 @@
             .hero__title { font-size: 2rem; }
             .hero__subtitle { font-size: 0.95rem; }
             .hero__buttons { gap: 12px; }
-            .btn { padding: 14px 20px; font-size: 0.65rem; flex: 1 1 calc(50% - 8px); min-width: 0; }
+            .btn { padding: 14px 20px; font-size: 0.65rem; flex: 1 1 calc(50% - 8px); min-width: 0; white-space: normal; text-align: center; }
             .hero__stats { flex-direction: column; gap: 30px; }
             .section { padding: 80px 0; }
             .section__title { font-size: 1.8rem; }
@@ -328,7 +318,7 @@
         <div class="hero__overlay"></div>
         <div class="hero__content">
             <div class="hero__badge">Торгово-производственная компания</div>
-            <h1 class="hero__title">Быть <span>современной</span> отечественной компанией</h1>
+            <h1 class="hero__title">Надёжность <span>как системное решение</span></h1>
             <p class="hero__subtitle">Выпускать надёжную, качественную и востребованную продукцию в области измерения и управления технологическими процессами в промышленности</p>
             <div class="hero__buttons">
                 <a href="#contact" class="btn btn--primary">Отправить заявку</a>
@@ -344,152 +334,24 @@
         </div>
     </section>
 
-    <!-- ===== CATALOG ===== -->
-    <section class="section section--light" id="catalog">
+    <!-- ===== ОБЪЕДИНЁННЫЙ РАЗДЕЛ "О КОМПАНИИ" (сначала директор, потом описание компании) ===== -->
+    <section class="section" id="about">
         <div class="container">
-            <div class="section__header fade-in">
-                <div class="section__label">Продукция</div>
-                <h2 class="section__title">Каталог оборудования</h2>
-                <p class="section__desc">Полный спектр арматуры и вспомогательных устройств для контрольно-измерительных приборов</p>
-            </div>
-            <div class="catalog__grid">
-                <div class="catalog-card fade-in"><div class="catalog-card__icon">⚙️</div><div><h3 class="catalog-card__title">Клапаны предохранительные (КЛПР)</h3><p class="catalog-card__desc">Защита приборов от воздействия давления, превышающего максимально допустимое рабочее давление.</p><div class="catalog-card__specs"><strong>Давление:</strong> 0,25–40,0 МПа | <strong>Температура:</strong> -50…+150°C</div></div></div>
-                <div class="catalog-card fade-in"><div class="catalog-card__icon">🔧</div><div><h3 class="catalog-card__title">Блоки клапанные и манифольды (БК)</h3><p class="catalog-card__desc">Для подключения КИП к соединительным линиям с целью изоляции, компенсации давления, продувки и сброса.</p><div class="catalog-card__specs"><strong>Исполнения:</strong> БК1, БК2, БК3, БК5 | <strong>Давление:</strong> до 40 МПа</div></div></div>
-                <div class="catalog-card fade-in"><div class="catalog-card__icon">🔄</div><div><h3 class="catalog-card__title">Петлевые трубки (ПТ)</h3><p class="catalog-card__desc">Для соединения КИП с местом отбора давления и снижения температуры в точке контактирования.</p><div class="catalog-card__specs"><strong>Формы:</strong> U-образная, угловая, прямая | <strong>Материал:</strong> нерж. сталь, углеродистая сталь, латунь</div></div></div>
-                <div class="catalog-card fade-in"><div class="catalog-card__icon">❄️</div><div><h3 class="catalog-card__title">Отводы-охладители ребристые (ОР)</h3><p class="catalog-card__desc">Снижение температуры измеряемой среды в точке контактирования приборов.</p><div class="catalog-card__specs"><strong>Давление:</strong> до 60 МПа | <strong>Температура:</strong> до +400°C</div></div></div>
-                <div class="catalog-card fade-in"><div class="catalog-card__icon">🛡️</div><div><h3 class="catalog-card__title">Демпфирующие устройства (ДУ)</h3><p class="catalog-card__desc">Для использования с приборами при измерении давления в средах с повышенной пульсацией и гидравлическими ударами.</p><div class="catalog-card__specs"><strong>Давление:</strong> до 40 МПа | <strong>Класс герметичности:</strong> А по ГОСТ 9544</div></div></div>
-                <div class="catalog-card fade-in"><div class="catalog-card__icon">🔗</div><div><h3 class="catalog-card__title">Соединительная арматура и фитинги</h3><p class="catalog-card__desc">Капиллярные линии, сбросные и продувочные клапаны, отборные устройства, обжимные фитинги, кронштейны.</p><div class="catalog-card__specs"><strong>Резьба:</strong> M20, G1/2, NPT, K | <strong>Материал:</strong> нерж. сталь, латунь</div></div></div>
-                <div class="catalog-card fade-in"><div class="catalog-card__icon">📊</div><div><h3 class="catalog-card__title">Указатели предельного давления (УПД)</h3><p class="catalog-card__desc">Для визуального контроля максимального или минимального допустимого давления и температуры.</p><div class="catalog-card__specs"><strong>Тип:</strong> раздвижной | <strong>Монтаж:</strong> на трубу или прибор</div></div></div>
-                <div class="catalog-card fade-in"><div class="catalog-card__icon">🎯</div><div><h3 class="catalog-card__title">Комплексные решения</h3><p class="catalog-card__desc">Разработка индивидуальных схем подключения приборов под ваши технологические задачи.</p><div class="catalog-card__specs"><strong>Включает:</strong> подбор, сборку, опрессовку, маркировку, гарантию</div></div></div>
-            </div>
-            <div class="catalog__download fade-in">
-                <a href="Каталог АРМАКИП - редакция 1.0.pdf" class="btn btn--primary" download>📥 Скачать полный каталог (PDF)</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SOLUTIONS SECTION ===== -->
-    <section class="section section--dark" id="solutions">
-        <div class="container">
-            <div class="section__header fade-in">
-                <div class="section__label">Индивидуальный подход</div>
-                <h2 class="section__title">Комплексные решения</h2>
-                <p class="section__desc">Разработка и производство оборудования под ваши индивидуальные требования — от концепции до готового изделия</p>
-            </div>
-
-            <div class="solutions__intro fade-in">
-                <h3 class="solutions__intro-title">Наша цель</h3>
-                <p class="solutions__intro-text">
-                    Поставка и производство, в том числе нестандартного оборудования, подготовка и разработка технических решений, направленных на оптимизацию технологических процессов.
-                    Более 25 лет инженерного и производственного опыта в решении самых сложных задач в разработке и организации технологического процесса — от конструкции, технологии к проекту и практическому внедрению.
-                </p>
-            </div>
-
-            <div class="process-steps">
-                <div class="process-step fade-in">
-                    <div class="process-step__number">01</div>
-                    <h4 class="process-step__title">Анализ и подбор</h4>
-                    <p class="process-step__desc">Анализ чертежей, технических требований, технологии изготовления с учётом объёма производства. Подбор оптимального решения: технология, оборудование, сроки.</p>
+            <!-- Блок генерального директора -->
+            <div class="about__director fade-in">
+                <div class="director__photo-wrapper">
+                    <img src="director.jpg" alt="Андрей Метальников — Генеральный директор ООО АрмаКИП Томск" class="director__photo">
                 </div>
-                <div class="process-step fade-in">
-                    <div class="process-step__number">02</div>
-                    <h4 class="process-step__title">Согласование</h4>
-                    <p class="process-step__desc">Согласование стоимости планируемого заказа и условий поставки. Утверждение методики приёмки изделий по качеству.</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="process-step__number">03</div>
-                    <h4 class="process-step__title">Производство</h4>
-                    <p class="process-step__desc">Изготовление и поставка опытных образцов по согласованию с заказчиком. Производство и поставка готовой продукции.</p>
+                <div class="director__content">
+                    <h2 class="director__name">Андрей Метальников</h2>
+                    <p class="director__position">Генеральный директор ООО «АрмаКИП Томск»</p>
+                    <p class="director__text">Более 25 лет инженерного и производственного опыта в решении самых сложных задач в разработке и организации технологического процесса — от концепции, технологии к проекту и практическому внедрению в области измерения давления и температуры, эффективного управления производственными процессами.</p>
+                    <div class="director__quote">«Наша миссия — быть современной отечественной компанией, выпускать надёжную, качественную и востребованную продукцию в области измерения и управления технологическими процессами в промышленности.»</div>
                 </div>
             </div>
 
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-card__icon">🔨</div>
-                    <h3 class="service-card__title">Холодная и горячая штамповка</h3>
-                    <p class="service-card__desc">Изготовление деталей различной степени сложности на кривошипных и гидравлических прессах.</p>
-                    <div class="service-card__materials"><strong>В комплекс услуг входит:</strong> проектирование и изготовление штамповой оснастки</div>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-card__icon">🏭</div>
-                    <h3 class="service-card__title">Литьё алюминиевых сплавов и нержавеющих сталей</h3>
-                    <p class="service-card__desc">Литьё в кокиль, литьё под давлением, литьё по выплавляемым моделям. Выполнение механической обработки деталей после литья.</p>
-                    <div class="service-card__materials"><strong>В комплекс услуг входит:</strong> проектирование и изготовление оснастки</div>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-card__icon">♻️</div>
-                    <h3 class="service-card__title">Литьё пластмасс</h3>
-                    <p class="service-card__desc">Литьё пластмасс под давлением на специальных литьевых машинах-термопластавтоматах (ТПА).</p>
-                    <div class="service-card__materials"><strong>Материалы:</strong> полиэтилен, полипропилен, полистирол и др.</div>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-card__icon">⚙️</div>
-                    <h3 class="service-card__title">Токарная и фрезерная обработка металлов</h3>
-                    <p class="service-card__desc">Изготовление деталей любой сложности из материалов: сталь, титан, нержавеющая сталь, алюминий и др.</p>
-                    <div class="service-card__materials"><strong>Точность:</strong> по чертежам заказчика | <strong>Контроль качества:</strong> на всех этапах</div>
-                </div>
-            </div>
-
-            <div class="solutions-contacts fade-in">
-                <div class="solutions-contacts__info">
-                    <h3>Свяжитесь с нами по вопросам комплексных решений</h3>
-                    <div class="solutions-contacts__item">
-                        <div class="solutions-contacts__icon">👤</div>
-                        <div>
-                            <div class="solutions-contacts__label">Генеральный директор</div>
-                            <div class="solutions-contacts__value">Метальников Андрей Юрьевич</div>
-                            <div class="solutions-contacts__value"><a href="tel:+79095469009">+7 (909) 546-90-09</a></div>
-                            <div class="solutions-contacts__value"><a href="mailto:mau@armakip.com">mau@armakip.com</a></div>
-                        </div>
-                    </div>
-                    <div class="solutions-contacts__item">
-                        <div class="solutions-contacts__icon">⚙️</div>
-                        <div>
-                            <div class="solutions-contacts__label">Технический директор</div>
-                            <div class="solutions-contacts__value">Везнер Сергей Михайлович</div>
-                            <div class="solutions-contacts__value"><a href="tel:+79059927476">+7 (905) 992-74-76</a></div>
-                            <div class="solutions-contacts__value"><a href="mailto:vsm@armakip.com">vsm@armakip.com</a></div>
-                        </div>
-                    </div>
-                    <div class="solutions-contacts__item">
-                        <div class="solutions-contacts__icon">🏢</div>
-                        <div>
-                            <div class="solutions-contacts__label">Адрес</div>
-                            <div class="solutions-contacts__value">634021, г. Томск, пр. Фрунзе, 115/3, офис 109</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="solutions-contacts__form">
-                    <h4 class="solutions-contacts__form-title">Обсудить ваш проект</h4>
-                    <p class="solutions-contacts__form-subtitle">Опишите задачу — наши инженеры подготовят индивидуальное предложение</p>
-                    <form class="solutions-form">
-                        <div class="form-group">
-                            <label>Ваше имя *</label>
-                            <input type="text" placeholder="Иван Петров" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Телефон *</label>
-                            <input type="tel" placeholder="+7 (XXX) XXX-XXXX" required>
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail *</label>
-                            <input type="email" placeholder="XXX@mail.ru" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Описание задачи</label>
-                            <textarea placeholder="Опишите ваше техническое задание или требования..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary">Отправить запрос</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== ABOUT ===== -->
-    <section class="section section--light" id="about">
-        <div class="container">
-            <div class="about fade-in">
+            <!-- Блок описания компании -->
+            <div class="about__company fade-in">
                 <div class="about__image-wrapper">
                     <img src="bg-industrial.jpg" alt="Промышленное оборудование АрмаКИП Томск" class="about__image">
                 </div>
@@ -502,6 +364,70 @@
                         <div class="about__feature"><div class="about__feature-icon">🔧</div><div class="about__feature-text">Измерение давления и температуры, эффективное управление производственными процессами</div></div>
                         <div class="about__feature"><div class="about__feature-icon">🏭</div><div class="about__feature-text">Более 25 лет инженерного и производственного опыта в решении самых сложных задач</div></div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATALOG ===== -->
+    <section class="section section--light" id="catalog">
+        <div class="container">
+            <div class="section__header fade-in">
+                <div class="section__label">Продукция</div>
+                <h2 class="section__title">Каталог оборудования</h2>
+                <p class="section__desc">Полный спектр арматуры и вспомогательных устройств для контрольно-измерительных приборов</p>
+            </div>
+            <div class="catalog__grid">
+                <div class="catalog-card fade-in"><div class="catalog-card__icon">⚙️</div><div><h3 class="catalog-card__title">Клапаны предохранительные (КЛПР)</h3><p class="catalog-card__desc">Защита приборов от воздействия давления, превышающего максимально допустимое рабочее давление.</p><div class="catalog-card__specs"><strong>Давление:</strong> 0,25–40,0 МПа | <strong>Температура:</strong> -50…+150°C</div></div><div class="catalog-card__preview"><img src="https://placehold.co/400x300/e50019/white?text=КЛПР" alt="Клапан предохранительный"></div></div>
+                <div class="catalog-card fade-in"><div class="catalog-card__icon">🔧</div><div><h3 class="catalog-card__title">Блоки клапанные и манифольды (БК)</h3><p class="catalog-card__desc">Для подключения КИП к соединительным линиям с целью изоляции, компенсации давления, продувки и сброса.</p><div class="catalog-card__specs"><strong>Исполнения:</strong> БК1, БК2, БК3, БК5 | <strong>Давление:</strong> до 40 МПа</div></div><div class="catalog-card__preview"><img src="https://placehold.co/400x300/2a3a59/white?text=БК" alt="Блок клапанный"></div></div>
+                <div class="catalog-card fade-in"><div class="catalog-card__icon">🔄</div><div><h3 class="catalog-card__title">Петлевые трубки (ПТ)</h3><p class="catalog-card__desc">Для соединения КИП с местом отбора давления и снижения температуры в точке контактирования.</p><div class="catalog-card__specs"><strong>Формы:</strong> U-образная, угловая, прямая | <strong>Материал:</strong> нерж. сталь, углеродистая сталь, латунь</div></div><div class="catalog-card__preview"><img src="https://placehold.co/400x300/c5c4b6/300009?text=Петлевая+трубка" alt="Петлевая трубка"></div></div>
+                <div class="catalog-card fade-in"><div class="catalog-card__icon">❄️</div><div><h3 class="catalog-card__title">Отводы-охладители ребристые (ОР)</h3><p class="catalog-card__desc">Снижение температуры измеряемой среды в точке контактирования приборов.</p><div class="catalog-card__specs"><strong>Давление:</strong> до 60 МПа | <strong>Температура:</strong> до +400°C</div></div><div class="catalog-card__preview"><img src="https://placehold.co/400x300/645f69/white?text=Охладитель" alt="Отвод-охладитель"></div></div>
+                <div class="catalog-card fade-in"><div class="catalog-card__icon">🛡️</div><div><h3 class="catalog-card__title">Демпфирующие устройства (ДУ)</h3><p class="catalog-card__desc">Для использования с приборами при измерении давления в средах с повышенной пульсацией и гидравлическими ударами.</p><div class="catalog-card__specs"><strong>Давление:</strong> до 40 МПа | <strong>Класс герметичности:</strong> А по ГОСТ 9544</div></div><div class="catalog-card__preview"><img src="https://placehold.co/400x300/300009/e50019?text=ДУ" alt="Демпфер"></div></div>
+                <div class="catalog-card fade-in"><div class="catalog-card__icon">🔗</div><div><h3 class="catalog-card__title">Соединительная арматура и фитинги</h3><p class="catalog-card__desc">Капиллярные линии, сбросные и продувочные клапаны, отборные устройства, обжимные фитинги, кронштейны.</p><div class="catalog-card__specs"><strong>Резьба:</strong> M20, G1/2, NPT, K | <strong>Материал:</strong> нерж. сталь, латунь</div></div><div class="catalog-card__preview"><img src="https://placehold.co/400x300/2a3a59/c5c4b6?text=Фитинги" alt="Фитинги"></div></div>
+                <div class="catalog-card fade-in"><div class="catalog-card__icon">📊</div><div><h3 class="catalog-card__title">Указатели предельного давления (УПД)</h3><p class="catalog-card__desc">Для визуального контроля максимального или минимального допустимого давления и температуры.</p><div class="catalog-card__specs"><strong>Тип:</strong> раздвижной | <strong>Монтаж:</strong> на трубу или прибор</div></div><div class="catalog-card__preview"><img src="https://placehold.co/400x300/e50019/white?text=УПД" alt="Указатель давления"></div></div>
+                <div class="catalog-card fade-in"><div class="catalog-card__icon">🎯</div><div><h3 class="catalog-card__title">Комплексные решения</h3><p class="catalog-card__desc">Разработка индивидуальных схем подключения приборов под ваши технологические задачи.</p><div class="catalog-card__specs"><strong>Включает:</strong> подбор, сборку, опрессовку, маркировку, гарантию</div></div><div class="catalog-card__preview"><img src="https://placehold.co/400x300/645f69/white?text=Комплекс" alt="Комплексные решения"></div></div>
+            </div>
+            <div class="catalog__download fade-in">
+                <a href="Каталог АРМАКИП - редакция 1.0.pdf" class="btn btn--primary" download>📥 Скачать полный каталог (PDF)</a>
+                <a href="Брошюра АрмаКИП - Решения.pdf" class="btn btn--primary" download>📘 Скачать брошюру "Решения" (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOLUTIONS SECTION ===== -->
+    <section class="section section--dark" id="solutions">
+        <div class="container">
+            <div class="section__header fade-in">
+                <div class="section__label">Индивидуальный подход</div>
+                <h2 class="section__title">Комплексные решения</h2>
+                <p class="section__desc">Разработка и производство оборудования под ваши индивидуальные требования — от концепции до готового изделия</p>
+            </div>
+            <div class="solutions__intro fade-in">
+                <h3 class="solutions__intro-title">Наша цель</h3>
+                <p class="solutions__intro-text">Поставка и производство, в том числе нестандартного оборудования, подготовка и разработка технических решений, направленных на оптимизацию технологических процессов. Более 25 лет инженерного и производственного опыта в решении самых сложных задач в разработке и организации технологического процесса — от конструкции, технологии к проекту и практическому внедрению.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step fade-in"><div class="process-step__number">01</div><h4 class="process-step__title">Анализ и подбор</h4><p class="process-step__desc">Анализ чертежей, технических требований, технологии изготовления с учётом объёма производства. Подбор оптимального решения: технология, оборудование, сроки.</p></div>
+                <div class="process-step fade-in"><div class="process-step__number">02</div><h4 class="process-step__title">Согласование</h4><p class="process-step__desc">Согласование стоимости планируемого заказа и условий поставки. Утверждение методики приёмки изделий по качеству.</p></div>
+                <div class="process-step fade-in"><div class="process-step__number">03</div><h4 class="process-step__title">Производство</h4><p class="process-step__desc">Изготовление и поставка опытных образцов по согласованию с заказчиком. Производство и поставка готовой продукции.</p></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in"><div class="service-card__icon">🔨</div><h3 class="service-card__title">Холодная и горячая штамповка</h3><p class="service-card__desc">Изготовление деталей различной степени сложности на кривошипных и гидравлических прессах.</p><div class="service-card__materials"><strong>В комплекс услуг входит:</strong> проектирование и изготовление штамповой оснастки</div></div>
+                <div class="service-card fade-in"><div class="service-card__icon">🏭</div><h3 class="service-card__title">Литьё алюминиевых сплавов и нержавеющих сталей</h3><p class="service-card__desc">Литьё в кокиль, литьё под давлением, литьё по выплавляемым моделям. Выполнение механической обработки деталей после литья.</p><div class="service-card__materials"><strong>В комплекс услуг входит:</strong> проектирование и изготовление оснастки</div></div>
+                <div class="service-card fade-in"><div class="service-card__icon">♻️</div><h3 class="service-card__title">Литьё пластмасс</h3><p class="service-card__desc">Литьё пластмасс под давлением на специальных литьевых машинах-термопластавтоматах (ТПА).</p><div class="service-card__materials"><strong>Материалы:</strong> полиэтилен, полипропилен, полистирол и др.</div></div>
+                <div class="service-card fade-in"><div class="service-card__icon">⚙️</div><h3 class="service-card__title">Токарная и фрезерная обработка металлов</h3><p class="service-card__desc">Изготовление деталей любой сложности из материалов: сталь, титан, нержавеющая сталь, алюминий и др.</p><div class="service-card__materials"><strong>Точность:</strong> по чертежам заказчика | <strong>Контроль качества:</strong> на всех этапах</div></div>
+            </div>
+            <div class="solutions-contacts fade-in">
+                <div class="solutions-contacts__info">
+                    <h3>Свяжитесь с нами по вопросам комплексных решений</h3>
+                    <div class="solutions-contacts__item"><div class="solutions-contacts__icon">👤</div><div><div class="solutions-contacts__label">Генеральный директор</div><div class="solutions-contacts__value">Метальников Андрей Юрьевич</div><div class="solutions-contacts__value"><a href="tel:+79095469009">+7 (909) 546-90-09</a></div><div class="solutions-contacts__value"><a href="mailto:mau@armakip.com">mau@armakip.com</a></div></div></div>
+                    <div class="solutions-contacts__item"><div class="solutions-contacts__icon">⚙️</div><div><div class="solutions-contacts__label">Технический директор</div><div class="solutions-contacts__value">Везнер Сергей Михайлович</div><div class="solutions-contacts__value"><a href="tel:+79059927476">+7 (905) 992-74-76</a></div><div class="solutions-contacts__value"><a href="mailto:vsm@armakip.com">vsm@armakip.com</a></div></div></div>
+                    <div class="solutions-contacts__item"><div class="solutions-contacts__icon">🏢</div><div><div class="solutions-contacts__label">Адрес</div><div class="solutions-contacts__value">634021, г. Томск, пр. Фрунзе, 115/3, офис 109</div></div></div>
+                </div>
+                <div class="solutions-contacts__form">
+                    <h4 class="solutions-contacts__form-title">Обсудить ваш проект</h4>
+                    <p class="solutions-contacts__form-subtitle">Опишите задачу — наши инженеры подготовят индивидуальное предложение</p>
+                    <form class="solutions-form"><div class="form-group"><label>Ваше имя *</label><input type="text" placeholder="Иван Петров" required></div><div class="form-group"><label>Телефон *</label><input type="tel" placeholder="+7 (XXX) XXX-XXXX" required></div><div class="form-group"><label>E-mail *</label><input type="email" placeholder="XXX@mail.ru" required></div><div class="form-group"><label>Описание задачи</label><textarea placeholder="Опишите ваше техническое задание или требования..."></textarea></div><button type="submit" class="btn btn--primary">Отправить запрос</button></form>
                 </div>
             </div>
         </div>
@@ -545,24 +471,6 @@
         </div>
     </section>
 
-    <!-- ===== DIRECTOR ===== -->
-    <section class="section" id="director">
-        <div class="container">
-            <div class="director fade-in">
-                <div class="director__photo-wrapper">
-                    <img src="director.jpg" alt="Андрей Метальников — Генеральный директор ООО АрмаКИП Томск" class="director__photo">
-                </div>
-                <div class="director__content">
-                    <div class="director__label">Руководство</div>
-                    <h2 class="director__name">Андрей Метальников</h2>
-                    <p class="director__position">Генеральный директор ООО «АрмаКИП Томск»</p>
-                    <p class="director__text">Более 25 лет инженерного и производственного опыта в решении самых сложных задач в разработке и организации технологического процесса — от концепции, технологии к проекту и практическому внедрению в области измерения давления и температуры, эффективного управления производственными процессами.</p>
-                    <div class="director__quote">«Наша миссия — быть современной отечественной компанией, выпускать надёжную, качественную и востребованную продукцию в области измерения и управления технологическими процессами в промышленности.»</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ===== CONTACT ===== -->
     <section class="section section--dark" id="contact">
         <div class="container">
@@ -573,7 +481,7 @@
                     <div class="contact__details">
                         <div class="contact__detail"><div class="contact__detail-icon">📞</div><div><div class="contact__detail-label">Телефон</div><div class="contact__detail-value"><a href="tel:+73822450900">+7 (3822) 45-09-00</a></div></div></div>
                         <div class="contact__detail"><div class="contact__detail-icon">✉️</div><div><div class="contact__detail-label">Email</div><div class="contact__detail-value"><a href="mailto:info@armakip.com">info@armakip.com</a></div></div></div>
-                        <div class="contact__detail"><div class="contact__detail-icon">🏢</div><div><div class="contact__detail-label">Адрес</div><div class="contact__detail-value">г. Томск</div></div></div>
+                        <div class="contact__detail"><div class="contact__detail-icon">🏢</div><div><div class="contact__detail-label">Адрес</div><div class="contact__detail-value">г. Томск, пр. Фрунзе, 115/3, офис 109</div></div></div>
                         <div class="contact__detail"><div class="contact__detail-icon">🕐</div><div><div class="contact__detail-label">Режим работы</div><div class="contact__detail-value">Обработка заявок: Пн-Пт 05:00–15:00 (по Москве)<br>Приём заявок: 24/7</div></div></div>
                     </div>
                 </div>
@@ -599,11 +507,8 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__top">
-                <div class="footer__brand">
-                    <div class="footer__logo"><img src="logo.png" alt="АрмаКИП Томск"><div class="footer__logo-text">АРМАКИП<span>ТОМСК</span></div></div>
-                    <p class="footer__brand-desc">Торгово-производственная компания. Поставка и производство оборудования для контрольно-измерительных приборов в промышленности.</p>
-                </div>
-                <div><h4 class="footer__heading">Разделы</h4><div class="footer__links"><a href="#about">О компании</a><a href="#catalog">Каталог</a><a href="#solutions">Решения</a><a href="#directions">Направления</a><a href="#advantages">Преимущества</a><a href="#director">Руководство</a><a href="#contact">Контакты</a></div></div>
+                <div class="footer__brand"><div class="footer__logo"><img src="logo.png" alt="АрмаКИП Томск"><div class="footer__logo-text">АРМАКИП<span>ТОМСК</span></div></div><p class="footer__brand-desc">Торгово-производственная компания. Поставка и производство оборудования для контрольно-измерительных приборов в промышленности.</p></div>
+                <div><h4 class="footer__heading">Разделы</h4><div class="footer__links"><a href="#about">О компании</a><a href="#catalog">Каталог</a><a href="#solutions">Решения</a><a href="#directions">Направления</a><a href="#advantages">Преимущества</a><a href="#contact">Контакты</a></div></div>
                 <div><h4 class="footer__heading">Контакты</h4><div class="footer__links"><a href="tel:+73822450900">+7 (3822) 45-09-00</a><a href="mailto:info@armakip.com">info@armakip.com</a><a href="#">г. Томск</a></div></div>
                 <div><h4 class="footer__heading">Реквизиты</h4><div class="footer__requisites"><div class="footer__requisite-item"><strong>ООО «АрмаКИП Томск»</strong></div><div class="footer__requisite-item"><strong>ИНН:</strong> 7000023811</div><div class="footer__requisite-item"><strong>КПП:</strong> 700001001</div><div class="footer__requisite-item"><strong>ОГРН:</strong> 1257000000993</div></div></div>
             </div>
@@ -616,9 +521,68 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.1 });
+        // бургер-меню
+        const burger = document.querySelector('.header__burger');
+        const mobileNav = document.createElement('div');
+        mobileNav.className = 'mobile-nav';
+        mobileNav.style.cssText = 'position:fixed; top:0; right:-100%; width:80%; max-width:300px; height:100vh; background:var(--navy); z-index:1001; padding:100px 30px; transition:right 0.3s; box-shadow:-5px 0 20px rgba(0,0,0,0.3);';
+        const overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; display:none;';
+        document.body.appendChild(overlay);
+        document.body.appendChild(mobileNav);
+        const navLinks = document.querySelectorAll('.header__nav a');
+        navLinks.forEach(link => {
+            const a = document.createElement('a');
+            a.href = link.href;
+            a.textContent = link.textContent;
+            a.style.display = 'block';
+            a.style.color = 'var(--beige)';
+            a.style.marginBottom = '20px';
+            a.style.fontSize = '0.8rem';
+            a.style.fontWeight = '500';
+            a.style.textTransform = 'uppercase';
+            a.style.letterSpacing = '1px';
+            mobileNav.appendChild(a);
+        });
+        const phoneLink = document.createElement('a');
+        phoneLink.href = 'tel:+73822450900';
+        phoneLink.textContent = '+7 (3822) 45-09-00';
+        phoneLink.style.display = 'block';
+        phoneLink.style.color = 'var(--beige)';
+        phoneLink.style.marginTop = '30px';
+        phoneLink.style.fontSize = '0.8rem';
+        mobileNav.appendChild(phoneLink);
+        const emailLink = document.createElement('a');
+        emailLink.href = 'mailto:info@armakip.com';
+        emailLink.textContent = 'info@armakip.com';
+        emailLink.style.display = 'block';
+        emailLink.style.color = 'var(--beige)';
+        emailLink.style.marginTop = '10px';
+        mobileNav.appendChild(emailLink);
+        function closeMenu() { mobileNav.style.right = '-100%'; overlay.style.display = 'none'; document.body.style.overflow = ''; }
+        function openMenu() { mobileNav.style.right = '0'; overlay.style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        burger.addEventListener('click', () => { if (mobileNav.style.right === '0px') closeMenu(); else openMenu(); });
+        overlay.addEventListener('click', closeMenu);
+        mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+        // плавный скролл
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // анимация появления
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
     </script>
 </body>
 </html>
