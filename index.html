@@ -4,6 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>АрмаКИП Томск — Надёжность как системное решение</title>
+    
+    <!-- ===== YANDEX METRIKA ===== -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    
+        ym(100000000, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/100000000" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- ===== GOOGLE ANALYTICS ===== -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -468,7 +499,6 @@
     <!-- ===== ОБЪЕДИНЁННЫЙ РАЗДЕЛ "О КОМПАНИИ" (сначала директор, потом описание компании) ===== -->
     <section class="section" id="about">
         <div class="container">
-            <!-- Блок генерального директора -->
             <div class="about__director fade-in">
                 <div class="director__photo-wrapper">
                     <img src="director.jpg" alt="Андрей Метальников — Генеральный директор ООО АрмаКИП Томск" class="director__photo">
@@ -481,7 +511,6 @@
                 </div>
             </div>
 
-            <!-- Блок описания компании -->
             <div class="about__company fade-in">
                 <div class="about__image-wrapper">
                     <img src="bg-industrial.jpg" alt="Промышленное оборудование АрмаКИП Томск" class="about__image">
@@ -582,7 +611,6 @@
                     <div class="catalog-card__preview"><img src="kompleks.png" alt="Комплексные решения"></div>
                 </div>
             </div>
-            <!-- КНОПКИ СКАЧИВАНИЯ -->
             <div class="catalog__download">
                 <a href="Каталог АРМАКИП - редакция 1.0.pdf" class="btn btn--primary download-track" download>📥 Скачать полный каталог (PDF)</a>
                 <a href="Брошюра АрмаКИП — Решения.pdf" class="btn btn--primary download-track" download>📘 Скачать брошюру "Решения" (PDF)</a>
@@ -776,7 +804,6 @@
     <script>
         // ===== STATISTICS SYSTEM =====
         (function() {
-            // Инициализация статистики
             let stats = {
                 visits: 0,
                 catalog: 0,
@@ -785,7 +812,6 @@
                 requests: 0
             };
 
-            // Загрузка из localStorage
             try {
                 const saved = localStorage.getItem('armakip_stats');
                 if (saved) {
@@ -794,14 +820,12 @@
                 }
             } catch(e) {}
 
-            // Увеличиваем счётчик посещений (только при загрузке страницы, если нет сессии)
             if (!sessionStorage.getItem('armakip_visited')) {
                 stats.visits += 1;
                 sessionStorage.setItem('armakip_visited', 'true');
                 saveStats();
             }
 
-            // Обновление интерфейса
             function updateDisplay() {
                 document.getElementById('statVisits').textContent = stats.visits;
                 document.getElementById('statCatalog').textContent = stats.catalog;
@@ -817,34 +841,55 @@
                 updateDisplay();
             }
 
-            // Отслеживание скачиваний (по классу .download-track)
             document.querySelectorAll('.download-track').forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function() {
                     const href = this.getAttribute('href');
                     if (href.includes('Каталог')) {
                         stats.catalog += 1;
+                        // Яндекс.Метрика событие
+                        if (typeof ym !== 'undefined') {
+                            ym(100000000, 'reachGoal', 'download_catalog');
+                        }
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'download', { 'event_category': 'catalog' });
+                        }
                     } else if (href.includes('Брошюра')) {
                         stats.brochure += 1;
+                        if (typeof ym !== 'undefined') {
+                            ym(100000000, 'reachGoal', 'download_brochure');
+                        }
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'download', { 'event_category': 'brochure' });
+                        }
                     } else if (href.includes('.pdf')) {
                         stats.certificates += 1;
+                        if (typeof ym !== 'undefined') {
+                            ym(100000000, 'reachGoal', 'download_certificate');
+                        }
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'download', { 'event_category': 'certificate' });
+                        }
                     }
                     saveStats();
                 });
             });
 
-            // Обработка форм (заявки)
             function trackFormSubmit(form) {
                 form.addEventListener('submit', function(e) {
-                    // Увеличиваем счётчик только если форма валидна (не запрещаем отправку)
                     stats.requests += 1;
                     saveStats();
+                    if (typeof ym !== 'undefined') {
+                        ym(100000000, 'reachGoal', 'form_submit');
+                    }
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'form_submit', { 'event_category': 'contact' });
+                    }
                 });
             }
 
-            // Отслеживаем все формы на странице
             document.querySelectorAll('form').forEach(trackFormSubmit);
 
-            // Модальное окно
+            // ===== MODAL =====
             const modal = document.getElementById('thankYouModal');
             const closeBtn = document.getElementById('closeModalBtn');
 
@@ -863,13 +908,12 @@
                 if (e.target === this) hideModal();
             });
 
-            // Перехват отправки главной формы с показом модалки
+            // ===== CONTACT FORM =====
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Валидация
                     const name = document.getElementById('contactName').value.trim();
                     const phone = document.getElementById('contactPhone').value.trim();
                     const email = document.getElementById('contactEmail').value.trim();
@@ -879,8 +923,6 @@
                         return;
                     }
                     
-                    // Сбор данных
-                    const formData = new FormData(this);
                     const data = {
                         name: document.getElementById('contactName').value,
                         phone: document.getElementById('contactPhone').value,
@@ -889,7 +931,6 @@
                         message: document.getElementById('contactMessage').value
                     };
 
-                    // Отправка на почту
                     const subject = encodeURIComponent('Заявка с сайта АрмаКИП');
                     const body = encodeURIComponent(
                         `Имя: ${data.name}\n` +
@@ -899,24 +940,19 @@
                         `Сообщение: ${data.message || 'Не указано'}`
                     );
                     
-                    // Открываем почтовый клиент
                     window.location.href = `mailto:info@armakip.ru?subject=${subject}&body=${body}`;
                     
-                    // Сбрасываем форму
                     this.reset();
-                    
-                    // Показываем модальное окно благодарности
                     showModal();
                 });
             }
 
-            // Также для формы в разделе "Решения"
+            // ===== SOLUTIONS FORM =====
             const solutionsForm = document.getElementById('solutionsForm');
             if (solutionsForm) {
                 solutionsForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Валидация
                     const inputs = this.querySelectorAll('input[required]');
                     let valid = true;
                     inputs.forEach(input => {
@@ -928,7 +964,6 @@
                         return;
                     }
                     
-                    // Сбор данных
                     const data = {
                         name: this.querySelector('input[placeholder="Иван Петров"]').value,
                         phone: this.querySelector('input[placeholder="+7 (XXX) XXX-XXXX"]').value,
@@ -951,16 +986,7 @@
                 });
             }
 
-            // Первоначальное обновление
             updateDisplay();
-
-            // Обновление статистики скачиваний по кликам (дополнительная безопасность)
-            document.querySelectorAll('.download-track').forEach(link => {
-                link.addEventListener('click', function() {
-                    // Небольшая задержка, чтобы localStorage успел обновиться
-                    setTimeout(saveStats, 100);
-                });
-            });
         })();
 
         // ===== БУРГЕР МЕНЮ =====
