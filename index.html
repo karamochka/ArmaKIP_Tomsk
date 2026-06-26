@@ -171,8 +171,8 @@
 
         /* ===== КАРУСЕЛЬ ДЛЯ КОМПЛЕКСНЫХ РЕШЕНИЙ ===== */
         .catalog-card--carousel .catalog-card__preview {
-            width: 280px;
-            padding: 10px;
+            width: 300px;
+            padding: 12px;
             background: #fff;
             pointer-events: auto;
         }
@@ -184,6 +184,7 @@
             width: 100%;
             overflow: hidden;
             border-radius: 8px;
+            background: #f5f5f5;
         }
         .carousel-track {
             display: flex;
@@ -193,12 +194,20 @@
         .carousel-slide {
             min-width: 100%;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            min-height: 180px;
         }
         .carousel-slide img {
             width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 6px;
+            height: auto;
+            max-height: 260px;
+            object-fit: contain;
+            display: block;
+            border-radius: 4px;
+            background: #f5f5f5;
         }
         .carousel-btn {
             position: absolute;
@@ -207,11 +216,11 @@
             background: rgba(42,58,89,0.8);
             color: white;
             border: none;
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -228,7 +237,7 @@
             display: flex;
             justify-content: center;
             gap: 6px;
-            margin-top: 8px;
+            margin-top: 10px;
         }
         .carousel-dot {
             width: 8px;
@@ -249,6 +258,15 @@
         @media (max-width: 768px) {
             .catalog-card__preview { display: none; }
             .catalog-card--carousel .catalog-card__preview { display: none; }
+        }
+        @media (min-width: 1024px) {
+            .catalog-card--carousel .catalog-card__preview {
+                width: 340px;
+                padding: 14px;
+            }
+            .carousel-slide img {
+                max-height: 320px;
+            }
         }
 
         .catalog__download { text-align: center; margin-top: 48px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
