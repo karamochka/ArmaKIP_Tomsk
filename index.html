@@ -6,7 +6,6 @@
     <title>АрмаКИП Томск — Надёжность как системное решение</title>
     
     <!-- ===== YANDEX METRIKA ===== -->
-    <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -26,7 +25,6 @@
     <!-- /Yandex.Metrika counter -->
 
     <!-- ===== GOOGLE ANALYTICS ===== -->
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -158,6 +156,8 @@
         .catalog-card__desc { font-size: 0.75rem; font-weight: 300; color: var(--gray); line-height: 1.6; margin-bottom: 12px; }
         .catalog-card__specs { font-size: 0.7rem; color: var(--gray); background: var(--light-bg); padding: 8px 12px; border-radius: 6px; margin-top: 8px; }
         .catalog-card__specs strong { color: var(--navy); }
+        
+        /* Обычное превью для карточек с одной картинкой */
         .catalog-card__preview {
             position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-20px);
             width: 200px; background: white; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
@@ -168,7 +168,89 @@
         .catalog-card:hover .catalog-card__preview {
             opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-10px);
         }
-        @media (max-width: 768px) { .catalog-card__preview { display: none; } }
+
+        /* ===== КАРУСЕЛЬ ДЛЯ КОМПЛЕКСНЫХ РЕШЕНИЙ ===== */
+        .catalog-card--carousel .catalog-card__preview {
+            width: 280px;
+            padding: 10px;
+            background: #fff;
+            pointer-events: auto;
+        }
+        .catalog-card--carousel:hover .catalog-card__preview {
+            transform: translateX(-50%) translateY(-10px);
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            will-change: transform;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(42,58,89,0.8);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10;
+            border: 1px solid var(--red);
+        }
+        .carousel-btn:hover {
+            background: var(--red);
+        }
+        .carousel-btn--prev { left: 4px; }
+        .carousel-btn--next { right: 4px; }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--beige);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            padding: 0;
+        }
+        .carousel-dot.active {
+            background: var(--red);
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .catalog-card__preview { display: none; }
+            .catalog-card--carousel .catalog-card__preview { display: none; }
+        }
+
         .catalog__download { text-align: center; margin-top: 48px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
         /* ===== SOLUTIONS SECTION ===== */
@@ -601,14 +683,27 @@
                     </div>
                     <div class="catalog-card__preview"><img src="upd.png" alt="Указатель давления"></div>
                 </div>
-                <div class="catalog-card">
+                <!-- КАРТОЧКА С КАРУСЕЛЬЮ ДЛЯ КОМПЛЕКСНЫХ РЕШЕНИЙ -->
+                <div class="catalog-card catalog-card--carousel">
                     <div class="catalog-card__icon">🎯</div>
                     <div>
                         <h3 class="catalog-card__title">Комплексные решения</h3>
                         <p class="catalog-card__desc">Разработка индивидуальных схем подключения приборов под ваши технологические задачи.</p>
                         <div class="catalog-card__specs"><strong>Включает:</strong> подбор, сборку, опрессовку, маркировку, гарантию</div>
                     </div>
-                    <div class="catalog-card__preview"><img src="kompleks.png" alt="Комплексные решения"></div>
+                    <div class="catalog-card__preview">
+                        <div class="carousel-container" data-carousel>
+                            <div class="carousel-track" data-track>
+                                <div class="carousel-slide"><img src="kompleks1.png" alt="Комплексное решение 1"></div>
+                                <div class="carousel-slide"><img src="kompleks2.png" alt="Комплексное решение 2"></div>
+                                <div class="carousel-slide"><img src="kompleks3.png" alt="Комплексное решение 3"></div>
+                                <div class="carousel-slide"><img src="kompleks4.png" alt="Комплексное решение 4"></div>
+                            </div>
+                            <button class="carousel-btn carousel-btn--prev" data-prev>‹</button>
+                            <button class="carousel-btn carousel-btn--next" data-next>›</button>
+                        </div>
+                        <div class="carousel-dots" data-dots></div>
+                    </div>
                 </div>
             </div>
             <div class="catalog__download">
@@ -802,6 +897,89 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
+        // ===== КАРУСЕЛЬ ДЛЯ КОМПЛЕКСНЫХ РЕШЕНИЙ =====
+        (function() {
+            const carousels = document.querySelectorAll('[data-carousel]');
+            carousels.forEach(container => {
+                const track = container.querySelector('[data-track]');
+                const slides = track.querySelectorAll('.carousel-slide');
+                const prevBtn = container.querySelector('[data-prev]');
+                const nextBtn = container.querySelector('[data-next]');
+                const dotsContainer = container.parentElement.querySelector('[data-dots]');
+                
+                if (!slides.length) return;
+                
+                let currentIndex = 0;
+                const totalSlides = slides.length;
+                let autoPlayTimer = null;
+                
+                // Создаём точки
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                    slides.forEach((_, i) => {
+                        const dot = document.createElement('button');
+                        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                        dot.dataset.index = i;
+                        dot.addEventListener('click', () => goTo(i));
+                        dotsContainer.appendChild(dot);
+                    });
+                }
+                
+                function goTo(index) {
+                    currentIndex = index;
+                    track.style.transform = `translateX(-${index * 100}%)`;
+                    // Обновляем точки
+                    if (dotsContainer) {
+                        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                        dots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === index);
+                        });
+                    }
+                }
+                
+                function nextSlide() {
+                    const nextIndex = (currentIndex + 1) % totalSlides;
+                    goTo(nextIndex);
+                }
+                
+                function prevSlide() {
+                    const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    goTo(prevIndex);
+                }
+                
+                // Кнопки
+                if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+                if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+                
+                // Автоплей
+                function startAutoPlay() {
+                    if (autoPlayTimer) clearInterval(autoPlayTimer);
+                    autoPlayTimer = setInterval(nextSlide, 3000);
+                }
+                
+                function resetAutoPlay() {
+                    if (autoPlayTimer) {
+                        clearInterval(autoPlayTimer);
+                        startAutoPlay();
+                    }
+                }
+                
+                // Пауза при наведении на превью
+                const preview = container.closest('.catalog-card__preview');
+                if (preview) {
+                    preview.addEventListener('mouseenter', () => {
+                        if (autoPlayTimer) clearInterval(autoPlayTimer);
+                    });
+                    preview.addEventListener('mouseleave', startAutoPlay);
+                }
+                
+                startAutoPlay();
+                
+                // Назначаем функции на контейнер для доступа извне
+                container.__carousel = { goTo, nextSlide, prevSlide, startAutoPlay, stopAutoPlay: () => clearInterval(autoPlayTimer) };
+            });
+        })();
+
         // ===== STATISTICS SYSTEM =====
         (function() {
             let stats = {
@@ -846,29 +1024,16 @@
                     const href = this.getAttribute('href');
                     if (href.includes('Каталог')) {
                         stats.catalog += 1;
-                        // Яндекс.Метрика событие
-                        if (typeof ym !== 'undefined') {
-                            ym(100000000, 'reachGoal', 'download_catalog');
-                        }
-                        if (typeof gtag !== 'undefined') {
-                            gtag('event', 'download', { 'event_category': 'catalog' });
-                        }
+                        if (typeof ym !== 'undefined') ym(100000000, 'reachGoal', 'download_catalog');
+                        if (typeof gtag !== 'undefined') gtag('event', 'download', { 'event_category': 'catalog' });
                     } else if (href.includes('Брошюра')) {
                         stats.brochure += 1;
-                        if (typeof ym !== 'undefined') {
-                            ym(100000000, 'reachGoal', 'download_brochure');
-                        }
-                        if (typeof gtag !== 'undefined') {
-                            gtag('event', 'download', { 'event_category': 'brochure' });
-                        }
+                        if (typeof ym !== 'undefined') ym(100000000, 'reachGoal', 'download_brochure');
+                        if (typeof gtag !== 'undefined') gtag('event', 'download', { 'event_category': 'brochure' });
                     } else if (href.includes('.pdf')) {
                         stats.certificates += 1;
-                        if (typeof ym !== 'undefined') {
-                            ym(100000000, 'reachGoal', 'download_certificate');
-                        }
-                        if (typeof gtag !== 'undefined') {
-                            gtag('event', 'download', { 'event_category': 'certificate' });
-                        }
+                        if (typeof ym !== 'undefined') ym(100000000, 'reachGoal', 'download_certificate');
+                        if (typeof gtag !== 'undefined') gtag('event', 'download', { 'event_category': 'certificate' });
                     }
                     saveStats();
                 });
@@ -878,12 +1043,8 @@
                 form.addEventListener('submit', function(e) {
                     stats.requests += 1;
                     saveStats();
-                    if (typeof ym !== 'undefined') {
-                        ym(100000000, 'reachGoal', 'form_submit');
-                    }
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'form_submit', { 'event_category': 'contact' });
-                    }
+                    if (typeof ym !== 'undefined') ym(100000000, 'reachGoal', 'form_submit');
+                    if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { 'event_category': 'contact' });
                 });
             }
 
